@@ -72,7 +72,7 @@ int main()
                     *buffer = '*';
                     isExit = true;
                 }
-            } while (*buffer != '*');
+            } while (*buffer != '*...');
 
             cout << "Client: ";
             do {
