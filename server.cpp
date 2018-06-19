@@ -20,14 +20,12 @@ int main()
     struct sockaddr_in server_addr;
     socklen_t size;
     client = socket(AF_INET, SOCK_STREAM, 0);
-
     if (client < 0)
     {
         cout << "\nLỗi khi thiết lập ổ cắm ..." << endl;
         exit(1);
     }
-    cout << "\n=>  Máy chủ socket đã được tạo .." << endl;
-
+    cout << "\n=> Socket server has been created..." << endl;
     server_addr.sin_family = AF_INET;
     server_addr.sin_addr.s_addr = htons(INADDR_ANY);
     server_addr.sin_port = htons(portNum);
@@ -72,7 +70,7 @@ int main()
                     *buffer = '*';
                     isExit = true;
                 }
-            } while (*buffer != '*');
+            } while (*buffer != '*...');
 
             cout << "Client: ";
             do {
