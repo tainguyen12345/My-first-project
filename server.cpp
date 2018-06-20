@@ -23,35 +23,35 @@ int main()
 
     if (client < 0)
     {
-        cout << "\nError establishing socket..." << endl;
+        cout << "\nLỗi khi thiết lập ổ cắm ..." << endl;
         exit(1);
     }
-    cout << "\n=> Socket server has been created..." << endl;
+    cout << "\n=>  Máy chủ socket đã được tạo .." << endl;
 
     server_addr.sin_family = AF_INET;
     server_addr.sin_addr.s_addr = htons(INADDR_ANY);
     server_addr.sin_port = htons(portNum);
     if ((bind(client, (struct sockaddr*)&server_addr,sizeof(server_addr))) < 0)
     {
-        cout << "=> Error binding connection, the socket has already been established..." << endl;
+        cout << "=> Lỗi kết nối kết nối, ổ cắm chưa được thiết lập ..." << endl;
         return -1;
     }
     size = sizeof(server_addr);
-    cout << "=> Looking for clients..." << endl;
+    cout << "=> Đang tìm kiếm khách hàng ..." << endl;
     listen(client, 1);
     int clientCount = 1;
     server = accept(client,(struct sockaddr *)&server_addr,&size);
 
     // first check if it is valid or not
     if (server < 0)
-        cout << "=> Error on accepting..." << endl;
+        cout << "=>  Lỗi khi chấp nhận ..." << endl;
 
     while (server > 0)
     {
         strcpy(buffer, "=> Server connected...\n");
         send(server, buffer, bufsize, 0);
-        cout << "=> Connected with the client #" << clientCount << ", you are good to go..." << endl;
-        cout << "\n=> Enter # to end the connection\n" << endl;
+        cout << "=> Đã kết nối với khách hàng #" << clientCount << ", đường dẫn tốt..." << endl;
+        cout << "\n=> Nhâp # để kết thúc kết nối\n" << endl;
         cout << "Client: ";
         do {
             recv(server, buffer, bufsize, 0);
@@ -84,7 +84,7 @@ int main()
                 }
             } while (*buffer != '*');
         } while (!isExit);
-        cout << "\n\n=> Connection terminated with IP " << inet_ntoa(server_addr.sin_addr);
+        cout << "\n\n=> kết nối kết thúc bởi IP " << inet_ntoa(server_addr.sin_addr);
         close(server);
         cout << "\nGoodbye..." << endl;
         isExit = false;
