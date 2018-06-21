@@ -11,11 +11,11 @@ using namespace std;
 int main()
 {
     int client;
-    int portNum = 1500;
+    int portNum = 1800;
     bool isExit = false;
     int bufsize = 1024;
     char buffer[bufsize];
-    char* ip = "127.0.0.1";
+    char* ip = "192.168.11.93";
     struct sockaddr_in server_addr;
     client = socket(AF_INET, SOCK_STREAM, 0);
     if (client < 0)
@@ -26,6 +26,8 @@ int main()
     cout << "\n=> Ứng dụng Socket đã được tạo ..." << endl;
     server_addr.sin_family = AF_INET;
     server_addr.sin_port = htons(portNum);
+    server_addr.sin_addr.s_addr = inet_addr("192.168.11.93");
+
     if (connect(client,(struct sockaddr *)&server_addr, sizeof(server_addr)) == 0)
     cout << "=> Kết nối với số cổng của máy chủ: " << portNum << endl;
     cout << "=> Đang chờ xác nhận từ máy chủ ..." << endl; //line 40
